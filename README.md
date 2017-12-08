@@ -1,6 +1,8 @@
 # webproject
 WeThinkCode_ Project
 
+use cookies to pass image path from php to js
+
 Errors:
 
 Camera saving error:
