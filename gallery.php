@@ -64,7 +64,7 @@ try
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   //Select from pictures using type.
-  $stmt = $conn->prepare("SELECT FROM pictures WHERE type = :type");
+  $stmt = $conn->prepare("SELECT * FROM pictures WHERE type = :type");
   $stmt->execute(array(':type' => "image"));
 
   $result = $stmt->fetchAll();

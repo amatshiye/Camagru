@@ -3,7 +3,7 @@
 session_start();
 require_once ('database.php');
 
-$user = $_SESSION['username'];
+$user = $_SESSION['email'];
 if (!file_exists("upload"))
 {
     mkdir("upload");
@@ -31,6 +31,6 @@ catch(PDOException $e)
 {
     echo "<script>alert('Error: Unable to save picture')</script>";
 }
-$success = file_put_contents($file, $data);
-print $success ? $file : 'Unable to save the file.';
+/*$success = file_put_contents($file, $data);
+print $success ? $file : 'Unable to save the file.';*/
 ?>
