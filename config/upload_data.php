@@ -22,10 +22,10 @@ try
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //Preparing query
-    $stmt = $conn->prepare("INSERT INTO pictures (name, type, user)
-    VALUES(:name, :type, :user)");
+    $stmt = $conn->prepare("INSERT INTO pictures (name, type, user, ext)
+    VALUES(:name, :type, :user, :ext)");
     //Executing query
-    $stmt->execute(array(':name' => $file, ':type' => "png", ':user' => $user));
+    $stmt->execute(array(':name' => $file, ':type' => "image", ':user' => $user, ':ext' => "png"));
 }
 catch(PDOException $e)
 {
