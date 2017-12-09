@@ -2,7 +2,11 @@
 
 session_start();
 
-if (isset($_GET['file_error']))
+if (isset($_GET['no_image']))
+{
+    echo "<script>alert('Please select a photo to upload first!')</script>";
+}
+else if (isset($_GET['file_error']))
 {
     echo "<script>alert('Error: Image is invalid.')</script>";
 }
@@ -150,7 +154,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         }
         else
         {
-            console.log("File exists or other shit went down");
+            console.log("File doesn't exists or other shit went down");
         }
         //Header
         function myFunction()

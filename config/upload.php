@@ -14,7 +14,12 @@ if (isset($_FILES['image']))
 
     $extensions = array("jpeg", "jpg", "png");
 
-    if (in_array($file_ext, $extensions) === false)
+    if ($file_size == false)
+    {
+        header("Location: ../cam.php?no_image");
+        exit();
+    }
+    else if (in_array($file_ext, $extensions) === false)
     {
         header("Location: ../cam.php?format_not_supported");
         exit();
