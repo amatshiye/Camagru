@@ -35,7 +35,7 @@ if (isset($_FILES['image']))
         else
         {
             move_uploaded_file($file_tmp, $file_path);
-            header("Location: ../cam.php?file_uploaded");
+            header("Location: ../cam.php?file_uploaded&file_path=".$file_path);
             exit();
         }
     }
