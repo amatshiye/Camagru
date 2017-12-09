@@ -130,12 +130,13 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             if (canvas != null)
             {
                 var context = canvas.getContext('2d');
-            
+                console.log("Getting image");
                 display_image();
                 function display_image()
                 {
                     display_image = new Image();
                     display_image.src = file_path;
+                    console.log("Image found");
                     display_image.onload = function(){
                         context.drawImage(display_image, 0, 0, 400, 300);
                         console.log("Displaying image");
