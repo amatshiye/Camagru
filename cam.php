@@ -171,7 +171,13 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
                 x.className = "topnav";
             }
         }
+        //THE END OF THE SECOND JS LINES
         </script>
+        <script>
+
+            //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
+            
+            </script>
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
                 </form>
