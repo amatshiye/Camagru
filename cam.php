@@ -81,7 +81,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         <input type="submit" value="Upload Image" name="submit">
     </form>
     <div class="boot1">
-        <canvas id="canvas" width="400" height="300"></canvas>
+        <canvas class="layer" id="canvas" width="400" height="300"></canvas>
+        <canvas class="layer" id="over_canvas" width="400" height="300"></canvas>
     </div>
     <script>
     (function()
@@ -103,6 +104,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             video.play();
         }, function (error) {
             alert('Error tyring to use camera');
+            console.log("Camera not found!!!");
         });
         
         document.getElementById('capture').addEventListener('click', function() {
