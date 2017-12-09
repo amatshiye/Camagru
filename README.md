@@ -6,6 +6,7 @@ use cookies to pass image path from php to js
 New Development:
 
 Upload Working - Using url to pass image location
+Working on - Overlaying canvas
 
 Errors:
 
