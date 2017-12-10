@@ -9,6 +9,10 @@ else if (isset($_GET['signup']) && $_GET['signup'] == "email")
 {
   echo ("<script>alert('The email entered has been used before')</script>;");
 }
+else if (isset($_GET['signup']) && $_GET['signup'] == "username")
+{
+  echo ("<script>alert('Username not available. Choose another one')</script>;");
+}
 else if (isset($_GET['code']) && $_GET['code'] == -1)
 {
   echo ("<script>alert('Error: Code is invalid')</script>;");

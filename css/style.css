@@ -1,12 +1,12 @@
-.layer {
+/*.layer {
   position: absolute;
   left: 40.5%;
   top: 66%;
   z-index: 0;
-}
+}*/
 
 /*Canvas and video stuff*/
-/*.boot1 {
+.boot1 {
   float: center;
   position: relative;
   background: #ffffff;
@@ -16,12 +16,11 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 10px auto;
   border:10px solid #ddd;
-}*/
+}
 
 .booth {
   background-color: #ccc;
   margin: 0 auto;
-  left: 1.5%;
   position: relative;
   max-width: 400px;
   width: 100%;

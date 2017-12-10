@@ -145,7 +145,7 @@ else if (isset($_GET['verify']) && $_GET['verify'] == 1)
 <div class="form">
     <h2>Login to your account</h2>
     <form action="config/login.inc.php" method="POST">
-        <input type="email" name="email" placeholder="Email"/>
+        <input name="login" placeholder="Email/Username"/>
         <input type="password" name="passwd" placeholder="Password"/>
         <button type="submit" name="submit">Login</button>
         <button formaction="index.php">Register</button>

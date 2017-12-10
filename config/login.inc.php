@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['submit']))
 {
-    $login = $_POST['email'];
+    $login = $_POST['login'];
     $passwd = $_POST['passwd'];
 
     if (empty($login) || empty($passwd))
@@ -21,8 +21,8 @@ if (isset($_POST['submit']))
             $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $conn->prepare('SELECT * FROM users WHERE email = :email');
-            $stmt->execute(array(':email' => $login));
+            $stmt = $conn->prepare('SELECT * FROM users WHERE email = :email OR user_name = :username');
+            $stmt->execute(array(':email' => $login, ':username' => $login));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($result))
