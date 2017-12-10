@@ -67,12 +67,13 @@ try
   $stmt = $conn->prepare("SELECT * FROM pictures WHERE type = :type");
   $stmt->execute(array(':type' => "image"));
 
-  $result = $stmt->fetchAll();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
   if (count($result))
   {
-    foreach($result as $row => $key)
+    foreach ($result as $row)
     {
-      echo $key;
+      echo "config/".$row['name'];
+      echo "<br>";
     }
   }
   else

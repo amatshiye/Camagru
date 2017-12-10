@@ -62,18 +62,26 @@ if (isset($_POST['submit']))
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //Preparing the query
-            $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email OR user_name = :username");
 
             //executing the query
-            $stmt->execute(array(':email' => $email));
+            $stmt->execute(array(':email' => $email, ':username' => $username));
 
             $result = $stmt->fetchAll();
             if (count($result))
             {
                 foreach($result as $row)
                 {
-                    header("Location: ../index.php?signup=email");
-                    exit();
+                    if ($row['email'] == $email)
+                    {
+                        header("Location: ../index.php?signup=email");
+                        exit();
+                    }
+                    else if ($row['user_name'] == $username)
+                    {
+                        header("Location: ../index.php?signup=username");
+                        exit();
+                    }
                 }
             }
             else
