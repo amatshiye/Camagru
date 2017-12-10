@@ -61,15 +61,15 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <div class="grid">
     <div class="row">
         <div class="column">
-            <button onclick"#">
-                <img src="stickers/Awesome.png" height="100" width="auto">
+            <button onclick="showImage1()">
+                <img id="awesome" src="stickers/Awesome.png" height="100" width="auto">
             </button>
             <button onclick="#">
-                <img src="stickers/Green.jpg" height="100" width="auto">
+                <img id="green" src="stickers/Green.jpg" height="100" width="auto">
             </button>
         </div>
         <div class="column">
-            <button onclick="img_1()" type="button">
+            <button onclick="#" type="button">
                 <img id="hand" src="stickers/Hand.JPG" height="100" width="auto">
             </button>
             <button onclick="#">
@@ -184,15 +184,16 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         <script>
 
             //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
-            function img_1()
+            var currentX;
+            var currentY;
+            
+            function showImage1()
             {
-                canvas = getElementById('over_canvas'),
+                var canvas = document.getElementById('canvas'),
                 context = canvas.getContext('2d');
-
-                var img = document.getElementById('hand');
-                context.drawImage(img, 0, 0, 40, 30);
+                var img = document.getElementById('awesome');
+                context.drawImage(img, 0, 0, 100, 100);
             }
-
             </script>
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
