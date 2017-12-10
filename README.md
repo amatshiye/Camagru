@@ -1,7 +1,8 @@
 # webproject
 WeThinkCode_ Project
 
-use cookies to pass image path from php to js
+use cookies to pass image path from php to js (failed)
+now using url parameters to pass image path
 
 New Development:
 
