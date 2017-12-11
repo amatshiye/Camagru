@@ -62,18 +62,18 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <div class="row">
         <div class="column">
             <button onclick="showImage1()">
-                <img id="awesome" src="stickers/Awesome.png" height="100" width="auto">
+                <img id="inlove" src="stickers/inlove.png" height="100" width="auto">
             </button>
             <button onclick="#">
-                <img id="green" src="stickers/Green.jpg" height="100" width="auto">
+                <img id="joy" src="stickers/joy.png" height="100" width="auto">
             </button>
         </div>
         <div class="column">
             <button onclick="#" type="button">
-                <img id="hand" src="stickers/Hand.JPG" height="100" width="auto">
+                <img id="weak_smile" src="stickers/weak_smile.png" height="100" width="auto">
             </button>
             <button onclick="#">
-                <img id="smile" src="stickers/Smile.jpg" height="100" width="auto">
+                <img id="smile" src="stickers/smile.png" height="100" width="auto">
             </button>
         </div>
         </div>
@@ -90,7 +90,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     </form>
     <div class="boot1">
         <canvas class="layer" id="canvas" width="400" height="300"></canvas>
-        <canvas class="layer" id="over_canvas" width="400" height="300"></canvas>
+        <!--<canvas class="layer" id="over_canvas" width="400" height="300"></canvas>-->
     </div>
     <script>
     (function()
@@ -186,14 +186,83 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
             var currentX;
             var currentY;
-            
+            var img = new Image(100, 100);
+
             function showImage1()
             {
-                var canvas = document.getElementById('canvas'),
+                canvas = document.getElementById('canvas'),
                 context = canvas.getContext('2d');
-                var img = document.getElementById('awesome');
-                context.drawImage(img, 0, 0, 100, 100);
+
+                currentX = canvas.width/2;
+                currentY = canvas.height/2;
+                
+                
+                img.src = "stickers/inlove.png";
+                img.onload = function()
+                {
+                    _Go();
+                };
             }
+
+            function _Go()
+            {
+                _MouseEvents();
+
+                setInterval(function()
+                {
+                    _DrawImage();
+                }, 1000/30);
+            }
+
+            function _DrawImage()
+            {
+                context.drawImage(img, currentX-(img.width/2), currentY-(img.height/2));
+            }
+            setInterval(function()
+            {
+                _ResetCanvas();
+                _DrawImage();
+            }, 1000/30);
+
+            fucntion _ResetCanvas()
+            {
+                context.fillStyle = '#fff';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+
+            canvas.onmousedown = function(e) 
+            {
+                var mouseX = e.pageX - this.offsetLeft;
+                var mouseY = e.pageY - this.offsetTop;
+
+
+                if (mouseX >= (currentX - img.width/2) &&
+                    mouseX <= (currentX + img.width/2) &&
+                    mouseY >= (currentY - img.height/2) &&
+                    mouseY <= (currentY + img.height/2)) {
+                isDraggable = true;
+                }
+            };
+
+            canvas.onmouseup = function(e)
+            {
+                isDraggable = false;
+            }
+
+            canvas.onmouseout = function(e)
+            {
+                isDraggable = false;
+                };
+
+                canvas.onmousemove = function(e)
+                {
+                    if (isDraggable) {
+                        currentX = e.pageX - this.offsetLeft;
+                        currentY = e.pageY - this.offsetTop;
+                        }
+                };
+
             </script>
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
