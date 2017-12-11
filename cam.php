@@ -204,8 +204,11 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
                 </form>
-                <!--<div class="footer">
+        </br>
+        </br>
+        </br>
+                <div class="footer">
                     <p>© 2017 PixelX</p>
-                </div>-->
+                </div>
             </body>
             </html>
