@@ -46,6 +46,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -85,14 +86,14 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <!--Camera here DUDE!!!-->
 
     <form class="booth" action="config/upload.php" method="POST" enctype="multipart/form-data">
-        <video id="video" width="400" height="300"></video>
+        <video class="video" id="video" width="400" height="300"></video>
+        <canvas class="canvas" id="over_video" width="400" height="300"></canvas>
         <a href="#" id="capture" class="take">Take Photo!</a>
         <input type="file" name="image" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
     </form>
     <div class="boot1">
-        <canvas class="layer" id="canvas" width="400" height="300"></canvas>
-        <!--<canvas class="layer" id="over_canvas" width="400" height="300"></canvas>-->
+        <canvas id="canvas" width="400" height="300"></canvas>
     </div>
 
     <!--js code!!!-->
@@ -192,7 +193,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
             function showImage1()
             {
-                canvas = document.getElementById('canvas'),
+                canvas = document.getElementById('over_video'),
                 context = canvas.getContext('2d');
 
                 var img = document.getElementById('inlove');
@@ -203,8 +204,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
                 </form>
-                <div class="footer">
+                <!--<div class="footer">
                     <p>© 2017 PixelX</p>
-                </div>
+                </div>-->
             </body>
             </html>

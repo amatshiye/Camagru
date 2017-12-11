@@ -1,14 +1,31 @@
-/*.layer {
+html, body {
+  width:100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
   position: absolute;
-  left: 40.5%;
-  top: 66%;
-  z-index: 0;
-}*/
+}
+
+/*For super imposing things*/
+.video {
+  position: relative;
+  top: 0%;
+  left: 0%;
+}
+
+.canvas {
+  position: absolute;
+  background-color: red;
+  top: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
 
 /*Canvas and video stuff*/
 .boot1 {
   float: center;
-  position: relative;
+  left: 50%;
   background: #ffffff;
   max-width: 400px;
   width: 100%;
@@ -19,6 +36,7 @@
 }
 
 .booth {
+  top: 20%;
   background-color: #ccc;
   margin: 0 auto;
   position: relative;
@@ -66,22 +84,27 @@ body {
 
 /* Title */
 .pen-title {
-  padding: 50px 0;
+  top: 0%;
+  /*padding: 50px 0;*/
   text-align: center;
   letter-spacing: 2px;
 }
+
 .pen-title h1 {
   margin: 0 0 20px;
   font-size: 48px;
   font-weight: 300;
   color: rgb(24, 24, 24);
 }
+
 .pen-title span {
   font-size: 12px;
 }
+
 .pen-title span .fa {
   color: #33b5e5;
 }
+
 .pen-title span a {
   color: #33b5e5;
   font-weight: 600;
