@@ -82,6 +82,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <div class="pen-title">
         <h1>PixelX</h1><span> <i class='fa fa-code'></i> </span>
     </div>
+    <!--Camera here DUDE!!!-->
+
     <form class="booth" action="config/upload.php" method="POST" enctype="multipart/form-data">
         <video id="video" width="400" height="300"></video>
         <a href="#" id="capture" class="take">Take Photo!</a>
@@ -92,6 +94,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         <canvas class="layer" id="canvas" width="400" height="300"></canvas>
         <!--<canvas class="layer" id="over_canvas" width="400" height="300"></canvas>-->
     </div>
+
+    <!--js code!!!-->
     <script>
     (function()
     {
@@ -115,7 +119,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
             console.log("Camera not found!!!");
         });
         
-        document.getElementById('capture').addEventListener('click', function() {
+        var clickBtn = document.getElementById('capture').addEventListener('click', function() {
+
             context.drawImage(video, 0, 0, 400, 300);
             var raw = canvas.toDataURL("image/png");
             document.getElementById('hidden_data').value = raw;
@@ -184,84 +189,15 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         <script>
 
             //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
-            var currentX;
-            var currentY;
-            var img = new Image(100, 100);
 
             function showImage1()
             {
                 canvas = document.getElementById('canvas'),
                 context = canvas.getContext('2d');
 
-                currentX = canvas.width/2;
-                currentY = canvas.height/2;
-                
-                
-                img.src = "stickers/inlove.png";
-                img.onload = function()
-                {
-                    _Go();
-                };
+                var img = document.getElementById('inlove');
+                context.drawImage(img, 0, 0, 100, 100);
             }
-
-            function _Go()
-            {
-                _MouseEvents();
-
-                setInterval(function()
-                {
-                    _DrawImage();
-                }, 1000/30);
-            }
-
-            function _DrawImage()
-            {
-                context.drawImage(img, currentX-(img.width/2), currentY-(img.height/2));
-            }
-            setInterval(function()
-            {
-                _ResetCanvas();
-                _DrawImage();
-            }, 1000/30);
-
-            fucntion _ResetCanvas()
-            {
-                context.fillStyle = '#fff';
-                context.fillRect(0, 0, canvas.width, canvas.height);
-            }
-
-
-            canvas.onmousedown = function(e) 
-            {
-                var mouseX = e.pageX - this.offsetLeft;
-                var mouseY = e.pageY - this.offsetTop;
-
-
-                if (mouseX >= (currentX - img.width/2) &&
-                    mouseX <= (currentX + img.width/2) &&
-                    mouseY >= (currentY - img.height/2) &&
-                    mouseY <= (currentY + img.height/2)) {
-                isDraggable = true;
-                }
-            };
-
-            canvas.onmouseup = function(e)
-            {
-                isDraggable = false;
-            }
-
-            canvas.onmouseout = function(e)
-            {
-                isDraggable = false;
-                };
-
-                canvas.onmousemove = function(e)
-                {
-                    if (isDraggable) {
-                        currentX = e.pageX - this.offsetLeft;
-                        currentY = e.pageY - this.offsetTop;
-                        }
-                };
 
             </script>
             <form method="POST" accept-charset="utf-8" name="form1">
