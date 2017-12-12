@@ -63,18 +63,18 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <div class="grid">
     <div class="row">
         <div class="column">
-            <button onclick="showImage1()">
+            <button onclick="showImage(1)">
                 <img id="inlove" src="stickers/inlove.png" height="100" width="auto">
             </button>
-            <button onclick="#">
+            <button onclick="showImage(2)">
                 <img id="joy" src="stickers/joy.png" height="100" width="auto">
             </button>
         </div>
         <div class="column">
-            <button onclick="#" type="button">
+            <button onclick="showImage(3)" type="button">
                 <img id="weak_smile" src="stickers/weak_smile.png" height="100" width="auto">
             </button>
-            <button onclick="#">
+            <button onclick="showImage(4)">
                 <img id="smile" src="stickers/smile.png" height="100" width="auto">
             </button>
         </div>
@@ -100,20 +100,33 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <!--js code!!!-->
     <script>
     
-    //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
+    //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!
+    var canvas1 = document.getElementById('over_video'),
+    context1 = canvas1.getContext('2d');
+    var img1;
 
-    var btnClick1 = false;
-    var img = document.getElementById('inlove');
-    var context_img1;
-
-    function showImage1()
+    function showImage(img_num)
     {
-        canvas = document.getElementById('over_video'),
-        context = canvas.getContext('2d'),
-        context_img1 = context;
+        if (img_num == 1)
+        {
+            img1 = document.getElementById('inlove');
+        }
+        else if (img_num == 2)
+        {
+            img1 = document.getElementById('joy');
+        }
+        else if (img_num == 3)
+        {
+            img1 = document.getElementById('weak_smile');
+        }
+        else
+        {
+            img1 = document.getElementById('smile');
+        }
 
-        context.drawImage(img, 0, 0, 100, 100);
-        btnClick1 = true;
+        //clearing the canvas everytime a sticker is clicked
+        context1.clearRect(0, 0, canvas1.width, canvas1.height);
+        context1.drawImage(img1, 0, 0, 100, 100);
     }
     
     //CAMERA STUFF BEGIN HERE
@@ -140,10 +153,9 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         });
         
         var clickBtn = document.getElementById('capture').addEventListener('click', function() {
-
+            context1.clearRect(0, 0, 100, 100);
             context.drawImage(video, 0, 0, 400, 300);
-            context.drawImage(img, 0, 0, 100, 100);
-            context_img1.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img1, 0, 0, 100, 100);
 
             var raw = canvas.toDataURL("image/png");
             document.getElementById('hidden_data').value = raw;
