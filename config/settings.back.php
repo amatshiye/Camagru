@@ -61,7 +61,7 @@ if (isset($_POST['submit']) && isset($_POST['passwd']))
 
         if ($username == "" && $email == "")
         {
-            header("Location: ../config/settings.php?empty");
+            header("Location: ../settings.php?empty");
             exit();
         }
         else
@@ -98,13 +98,30 @@ if (isset($_POST['submit']) && isset($_POST['passwd']))
                         $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        $stmt = $conn->prepare("UPDATE users SET user_name = :username, email = :email WHERE email = :email");
-                        $stmt->execute(array(':username' => $username, ':email' => $email, ':email' => $current_email));
+                        $stmt = $conn->prepare("UPDATE users SET user_name = :username, email = :email WHERE email = :cur_email");
+                        $stmt->execute(array(':username' => $username, ':email' => $email, ':cur_email' => $current_email));
 
                         //Sending email
+                        if (empty($username))
+                        {
+                            $mail_name = $current_username;
+                        }
+                        else
+                        {
+                            $mail_name = $username;
+                        }
+                        if (empty($email))
+                        {
+                            $mail_email = $current_email;
+                        }
+                        else
+                        {
+                            $mail_email = $email;
+                        }
+
                         $to = $current_email;
                         $subject = "Account Updated Successfully";
-                        $msg = "Your account info has been updated!";
+                        $msg = "Hello ".$mail_name."\nYour account info has been updated!\n\nYour new details:\nEmail: ".$mail_email."\nUsername: ".$mail_name;
                         $headers = 'From: noreply@pixelx.com';
                         mail($to, $subject, $msg, $headers);
 
