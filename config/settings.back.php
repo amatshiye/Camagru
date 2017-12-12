@@ -3,6 +3,7 @@
 session_start();
 require_once ('database.php');
 
+
 if (isset($_POST['submit']) && isset($_POST['passwd']))
 {
     $passwd = $_POST['passwd'];

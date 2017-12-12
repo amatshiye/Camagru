@@ -43,7 +43,7 @@ else if (isset($_GET['con']))
 }
 else if (isset($_GET['user']) && $_GET['user'] == "log")
 {
-    if ($_SESSION['username'] == "")
+    if (isset($_SESSION['username']))
     {
         //sign in please
         echo ("<script>alert('Please login/register first');</script>");

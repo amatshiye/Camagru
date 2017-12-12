@@ -59,7 +59,8 @@ try
             email varchar(255) not null,
             passwd varchar(255) not null,
             active int(1) not null DEFAULT 0,
-            con_code varchar(255) not null
+            con_code varchar(255) not null, 
+            noti int(1) not null DEFAULT 1
             );'
         );
         //executing the query

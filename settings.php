@@ -78,6 +78,7 @@ else if (isset($_GET['user_not_found']))
       <input type="password" name="passwd" placeholder="Password to confirm">
       <button type="submit" name="submit">Update</button><br/>
       <button formaction="forgot.php">Password Settings</button>
+      <button formaction="noti.php">Comments Notifications</button>
     </form>
   </div>
 </div>
