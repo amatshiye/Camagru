@@ -6,6 +6,10 @@ if (isset($_GET['reset']) && $_GET['reset'] == 1)
 {
     echo ("<script>alert('A reset link has been sent your email')</script>");
 }
+else if (isset($_GET['email_not_found']))
+{
+  echo ("<script>alert('This is not a registered email. Please register first');</script>");
+}
 else if (isset($_GET['con']) && $_GET['con'] == "error")
 {
   echo ("<script>alert('Connection to the server failed');</script>");

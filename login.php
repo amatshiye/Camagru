@@ -3,6 +3,11 @@
 session_start();
 require_once ('config/database.php');
 
+if (isset($_SESSION['username']) && isset($_SESSION['email']))
+{
+    header("Location: index.php");
+    exit();
+}
 if (isset($_GET['login']) && $_GET['login'] == "invalid")
 {
     echo "<script>alert('Invalid username/password entered');</script>";

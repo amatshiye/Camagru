@@ -43,6 +43,11 @@ if (isset($_POST['email']))
                     }
                 }
             }
+            else
+            {
+                header("Location: ../forgot.php?email_not_found");
+                exit();
+            }
         }
         catch(PDOException $e)
         {
