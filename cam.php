@@ -45,7 +45,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Camera</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -99,6 +99,24 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
     <!--js code!!!-->
     <script>
+    
+    //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
+
+    var btnClick1 = false;
+    var img = document.getElementById('inlove');
+    var context_img1;
+
+    function showImage1()
+    {
+        canvas = document.getElementById('over_video'),
+        context = canvas.getContext('2d'),
+        context_img1 = context;
+
+        context.drawImage(img, 0, 0, 100, 100);
+        btnClick1 = true;
+    }
+    
+    //CAMERA STUFF BEGIN HERE
     (function()
     {
         var video = document.getElementById('video'),
@@ -124,6 +142,9 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         var clickBtn = document.getElementById('capture').addEventListener('click', function() {
 
             context.drawImage(video, 0, 0, 400, 300);
+            context.drawImage(img, 0, 0, 100, 100);
+            context_img1.clearRect(0, 0, canvas.width, canvas.height);
+
             var raw = canvas.toDataURL("image/png");
             document.getElementById('hidden_data').value = raw;
             var fd = new FormData(document.forms["form1"]);
@@ -190,16 +211,6 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         </script>
         <script>
 
-            //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!!
-
-            function showImage1()
-            {
-                canvas = document.getElementById('over_video'),
-                context = canvas.getContext('2d');
-
-                var img = document.getElementById('inlove');
-                context.drawImage(img, 0, 0, 100, 100);
-            }
 
             </script>
             <form method="POST" accept-charset="utf-8" name="form1">
