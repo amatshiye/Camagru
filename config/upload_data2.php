@@ -7,6 +7,7 @@ if (!file_exists("upload"))
 {
     mkdir("upload");
 }
+
 $upload_dir = "upload/";
 $img = $_POST['hidden_data_2'];
 $img = str_replace('data:image/png;base64,', '', $img);
