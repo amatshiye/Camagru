@@ -36,9 +36,24 @@ function super_impose($src, $dest, $sticker)
     imagealphablending($image_1, true);
     imagesavealpha($image_1, true);
     imagecopy($image_1, $stamp, imagesx($image_1) - $sx - $marge_right, imagesy($image_1) - $sy - $marge_bottom, 0, 0, $width_small, $height_small);
-    imagepng($image_1, $dest);
+    return imagepng($image_1, $dest);
 }
-super_impose($image, $file, $image_sticker);
+$new_image = super_impose($image, $file, $image_sticker);
 
-print $success ? $file : "<script>alert('Unable to save file')</script>";
+//Sending image path to database
+try
+{
+    $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->prepare("INSERT INTO pictures (name, user, type, ext)
+    VALUES(:name, :user, :type, :ext)");
+    $stmt->execute(array(':name' => $file, ':user' => $user, ':type' => "image", ':ext' => "png"));
+}
+catch(PDOException $e)
+{
+    header("Location: ../cam.php?server_error");
+    exit();
+}
+//print $success ? $file : "<script>alert('Unable to save file')</script>";
 ?>

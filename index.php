@@ -43,7 +43,7 @@ else if (isset($_GET['con']))
 }
 else if (isset($_GET['user']) && $_GET['user'] == "log")
 {
-    if (isset($_SESSION['username']))
+    if (!isset($_SESSION['username']))
     {
         //sign in please
         echo ("<script>alert('Please login/register first');</script>");
@@ -54,7 +54,7 @@ else if (isset($_GET['user']) && $_GET['user'] == "log")
         echo ("<script>alert('Logged out successfully');</script>");
     }
 }
-else if (isset($_SESSION['email']))
+else if (isset($_SESSION['email']) && $_SESSION['email'] != "")
 {
   require_once('config/database.php');
 

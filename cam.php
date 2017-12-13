@@ -89,6 +89,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <form class="booth" action="config/upload.php" method="POST" enctype="multipart/form-data">
         <video class="video" id="video" width="400" height="300"></video>
         <canvas class="canvas" id="over_video" width="400" height="300"></canvas>
+        <canvas class="canvas" id="over_video2" width="400" height="300"></canvas>
         <a href="#" id="capture" class="take">Take Photo!</a>
         <input type="file" name="image" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
@@ -99,7 +100,13 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
     <!--js code!!!-->
     <script>
-    
+    //disabling the capture button
+
+    window.onload = function()
+    {
+        var button = document.getElementById('capture');
+        button.style.visibility='hidden';
+    };
     //SUPER IMPOSING BEGINS. DAN DAN DAAAAAAN!!!!
     var canvas1 = document.getElementById('over_video'),
     context1 = canvas1.getContext('2d');
@@ -107,6 +114,9 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
     function showImage(img_num)
     {
+        var button = document.getElementById('capture');
+        button.style.visibility='visible';
+
         if (img_num == 1)
         {
             img1 = document.getElementById('inlove');
@@ -133,7 +143,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     (function()
     {
         var video = document.getElementById('video'),
-        canvas = document.getElementById('canvas'),
+        canvas = document.getElementById('over_video'),
         context = canvas.getContext('2d');
         vendorUrl = window.URL || window.webkitURL;
         
@@ -153,18 +163,43 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         });
         
         var clickBtn = document.getElementById('capture').addEventListener('click', function() {
+            var button = document.getElementById('capture');
+            button.style.visibility = 'hidden';
+
             context1.clearRect(0, 0, 100, 100);
             context.drawImage(video, 0, 0, 400, 300);
-            context.drawImage(img1, 0, 0, 100, 100);
 
+            //Sticker image things
+            canvas2 = document.getElementById('over_video2');
+            context2 = canvas2.getContext('2d');
+
+            context2.drawImage(img1, 0, 0, 100, 100);
+            //getting image information
+            var raw = canvas2.toDataURL("image/png");
+            document.getElementById('hidden_data_2').value = raw;
+            var fd = new FormData(document.forms["save_canvas"]);
+            //saving the image
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'config/upload_data2.php', true);
+            xhr.send(fd)
+            context2.clearRect(0, 0, 100, 100);
+
+            //Saving picture taken from the live stream
+            //getting image information
             var raw = canvas.toDataURL("image/png");
             document.getElementById('hidden_data').value = raw;
             var fd = new FormData(document.forms["form1"]);
-
+            //saving the image
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'config/upload_data.php', true);
             xhr.send(fd);
-            window.location.href = "localhost:8080/boom/cam.php";
+            context.clearRect(0, 0, 400, 300);
+
+            new_canvas = document.getElementById('canvas');
+            new_context = new_canvas.getContext('2d');
+
+            new_context.drawImage(video, 0, 0, 400, 300);
+            new_context.drawImage(img1, 0, 0, 100, 100);
         });
     })();
     //THIS IS THE END OF THE FIRST JS LINES
@@ -175,6 +210,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         //getting image path via url params
         var url  = window.location.href;
         var params = url.split("=");
+
+        //This is for the upload part.
         if (params[1] != null)
         {
             var file_path = "config/" + params[1];
@@ -204,7 +241,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         }
         else
         {
-            console.log("File doesn't exists or other shit went down");
+            console.log("No params found");
         }
         //Header
         function myFunction()
@@ -221,13 +258,14 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         }
         //THE END OF THE SECOND JS LINES
         </script>
-        <script>
-
-
-            </script>
+        
             <form method="POST" accept-charset="utf-8" name="form1">
                 <input name="hidden_data" id="hidden_data" type="hidden"/>
                 </form>
+            
+            <form method="POST" accept-charset="utf-8" name="save_canvas">
+                <input name="hidden_data_2" id="hidden_data_2" type="hidden"/>
+            </form>
         </br>
         </br>
         </br>

@@ -1,6 +1,8 @@
 <?php
 
+require_once('database.php');
 session_start();
+$user = $_SESSION['username'];
 
 $dir_upload = "upload/";
 if (isset($_FILES['image']))
@@ -40,6 +42,20 @@ if (isset($_FILES['image']))
         else
         {
             move_uploaded_file($file_tmp, $file_path);
+            try
+            {
+                $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+                $stmt = $conn->prepare("INSERT INTO pictures (name, user, type, ext)
+                VALUES(:name, :user, :type, :ext)");
+                $stmt->execute(array(':name' => $file_path, ':user' => $user, 'type' => "image", ':ext' => $file_ext));
+            }
+            catch(PDOException $e)
+            {
+                header("Location: ../cam.php?server_error");
+                exit();
+            }
             header("Location: ../cam.php?file_uploaded&file_path=".$file_path);
             exit();
         }
