@@ -20,6 +20,17 @@ html, body {
   z-index: 10;
 }
 
+.scroller {
+  left: 0;
+  top: 0;
+  max-width: 400px;
+  width: 100%;
+  border-top: 5px solid #9e9a9a;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 10px auto;
+  border:10px solid #ddd;
+  background-color: blue;
+}
 
 /*Canvas and video stuff*/
 .boot1 {

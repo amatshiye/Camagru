@@ -34,6 +34,11 @@ if (isset($_POST['submit']))
                     {
                         $_SESSION['username'] = $row['user_name'];
                         $_SESSION['email'] = $row['email'];
+                        $folder_name = $_SESSION['username'];
+                        if (file_exists("upload/".$folder_name))
+                        {
+                            mkdir("upload/".$folder_name);
+                        }
                         header("Location: ../login.php?verify=1");
                         exit();
                     }

@@ -5,6 +5,17 @@ session_start();
 $user = $_SESSION['username'];
 
 $dir_upload = "upload/";
+$userdir = $dir_upload.$user."/";
+
+if (!file_exists($dir_upload))
+{
+    mkdir($dir_upload);
+}
+if (!file_exists($userdir))
+{
+    mkdir($userdir);
+}
+
 if (isset($_FILES['image']))
 {
     $file_name = $_FILES['image']['name'];
@@ -34,6 +45,8 @@ if (isset($_FILES['image']))
     else
     {
         $file_path = $dir_upload.$file_name;
+        $file_path_2 = $userdir.$file_name;
+
         if (file_exists($file_path))
         {
             header("Location: ../cam.php?file_exists");
@@ -41,7 +54,9 @@ if (isset($_FILES['image']))
         }
         else
         {
+            $file_tmp_2 = $file_tmp;
             move_uploaded_file($file_tmp, $file_path);
+            copy($file_path, $file_path_2);
             try
             {
                 $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);

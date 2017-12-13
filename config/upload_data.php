@@ -8,14 +8,19 @@ if (!file_exists("upload"))
 {
     mkdir("upload");
 }
+
 $upload_dir = "upload/";
+$userdir = $upload_dir.$user."/";
+
 $img = $_POST['hidden_data'];
 $img = str_replace('data:image/png;base64,', '', $img);
 $img = str_replace(' ', '+', $img);
 $data = base64_decode($img);
-$file = $upload_dir .$user.mktime(). ".png";
+$image_name = $user.mktime(). ".png";
+$file = $upload_dir .$image_name;
+$file_2 = $userdir.$image_name;
 
-
+file_put_contents($file_2, $data);
 $saved_file = file_put_contents($file, $data);
 
 $image = $file;

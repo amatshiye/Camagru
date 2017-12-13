@@ -97,6 +97,9 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <div class="boot1">
         <canvas id="canvas" width="400" height="300"></canvas>
     </div>
+    <div class="scroller">
+        <canvas id="canvas" width="400" height="300"><canvas>
+    </div>
 
     <!--js code!!!-->
     <script>
