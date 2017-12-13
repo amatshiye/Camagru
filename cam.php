@@ -92,7 +92,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
         <canvas class="canvas" id="over_video2" width="400" height="300"></canvas>
         <a href="#" id="capture" class="take">Take Photo!</a>
         <input type="file" name="image" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+        <input id="long" type="submit" value="Upload Image" name="submit">
     </form>
     <div class="boot1">
         <canvas id="canvas" width="400" height="300"></canvas>
