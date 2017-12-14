@@ -56,6 +56,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <a href="index.php">Home</a>
     <a href="gallery.php">Gallery</a>
     <a href="settings.php">Settings</a>
+    <a href="settings.php">Photos</a>
     <a href="index.php?user=log">Logout</a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
