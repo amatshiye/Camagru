@@ -61,46 +61,56 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     </div>
     <!--Stickers-->
     <div class="grid">
-    <div class="row">
-        <div class="column">
-            <button onclick="showImage(1)">
-                <img id="inlove" src="stickers/inlove.png" height="100" width="auto">
-            </button>
-            <button onclick="showImage(2)">
-                <img id="joy" src="stickers/joy.png" height="100" width="auto">
-            </button>
+            <div class="row">
+                <div class="column">
+                    <button onclick="showImage(1)">
+                        <img id="inlove" src="stickers/inlove.png">
+                    </button>
+                    <button onclick="showImage(2)">
+                        <img id="joy" src="stickers/joy.png">
+                    </button>
+                </div>
+                <div class="column">
+                    <button onclick="showImage(3)" type="button">
+                        <img id="weak_smile" src="stickers/weak_smile.png">
+                    </button>
+                    <button onclick="showImage(4)">
+                        <img id="smile" src="stickers/smile.png">
+                    </button>
+                </div>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <button onclick="showImage(3)" type="button">
-                <img id="weak_smile" src="stickers/weak_smile.png" height="100" width="auto">
-            </button>
-            <button onclick="showImage(4)">
-                <img id="smile" src="stickers/smile.png" height="100" width="auto">
-            </button>
+        <div class="pen-title">
+            <h1>PixelX</h1><span> <i class='fa fa-code'></i> </span>
         </div>
-        </div>
-    </div>
-</div>
-    <div class="pen-title">
-        <h1>PixelX</h1><span> <i class='fa fa-code'></i> </span>
-    </div>
-    <!--Camera here DUDE!!!-->
+        <!--Camera here DUDE!!!-->
+            <form class="booth" action="config/upload.php" method="POST" enctype="multipart/form-data">
+                <video class="video" id="video" width="400" height="300"></video>
+                <canvas class="canvas" id="over_video" width="400" height="300"></canvas>
+                <canvas class="canvas" id="over_video2" width="400" height="300"></canvas>
+                <a href="#" id="capture" class="take">Take Photo!</a>
+                <input type="file" name="image" id="fileToUpload">
+                <input id="long" type="submit" value="Upload Image" name="submit">
+            </form>
+            <div class="boot1">
+                <canvas id="canvas" width="400" height="300"></canvas>
+            </div>
+            <div class="container">
+                    <?php
+                    session_start();
 
-    <form class="booth" action="config/upload.php" method="POST" enctype="multipart/form-data">
-        <video class="video" id="video" width="400" height="300"></video>
-        <canvas class="canvas" id="over_video" width="400" height="300"></canvas>
-        <canvas class="canvas" id="over_video2" width="400" height="300"></canvas>
-        <a href="#" id="capture" class="take">Take Photo!</a>
-        <input type="file" name="image" id="fileToUpload">
-        <input id="long" type="submit" value="Upload Image" name="submit">
-    </form>
-    <div class="boot1">
-        <canvas id="canvas" width="400" height="300"></canvas>
-    </div>
-    <div class="scroller">
-        <canvas id="canvas" width="400" height="300"><canvas>
-    </div>
+                    $user = $_SESSION['username'];
+                    $dir = "config/upload/".$user."/*.*";
+                    $files = glob($dir);
 
+                    for ($i = 0; $i < count($files); $i++)
+                    {
+                        $num = $files[$i];
+                        echo '<img id="display" src="'.$num.'" alt="image file" />'."<br/><br/>";
+                    }
+                    ?>
+                    </div>
     <!--js code!!!-->
     <script>
     //disabling the capture button

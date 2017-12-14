@@ -6,6 +6,21 @@ html, body {
   position: absolute;
 }
 
+.container {
+  margin: -785px 1200px;
+  overflow: 3;
+  height: 750px;
+  width: 260px;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border:10px solid rgb(156, 141, 141);
+}
+
+.container img {
+  height: 200px;
+  width: 250px;
+}
 /*For super imposing things*/
 .video {
   position: relative;
@@ -21,15 +36,13 @@ html, body {
 }
 
 .scroller {
-  left: 0;
-  top: 0;
+  position: absolute;
+  height: 600px;
   max-width: 400px;
-  width: 100%;
   border-top: 5px solid #9e9a9a;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  margin: 10px auto;
   border:10px solid #ddd;
-  background-color: blue;
+  margin: -785px 1200px;
 }
 
 /*Canvas and video stuff*/
@@ -346,11 +359,16 @@ body {margin:0;}
 .grid {
   float: left;
   background: #ffffff;
-  max-width: 320px;
+  max-width: 130px;
   width: 250px;
   border-top: 5px solid #9e9a9a;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 10% auto;
+}
+
+.grid img{
+  height: 100px;
+  width: 100px;
 }
 
 .footer {

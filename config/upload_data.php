@@ -4,13 +4,17 @@ session_start();
 require_once ('database.php');
 
 $user = $_SESSION['username'];
-if (!file_exists("upload"))
-{
-    mkdir("upload");
-}
-
 $upload_dir = "upload/";
 $userdir = $upload_dir.$user."/";
+
+if (!file_exists($upload_dir))
+{
+    mkdir($upload_dir);
+}
+if (!file_exists($userdir))
+{
+    mkdir($userdir);
+}
 
 $img = $_POST['hidden_data'];
 $img = str_replace('data:image/png;base64,', '', $img);
@@ -20,7 +24,6 @@ $image_name = $user.mktime(). ".png";
 $file = $upload_dir .$image_name;
 $file_2 = $userdir.$image_name;
 
-file_put_contents($file_2, $data);
 $saved_file = file_put_contents($file, $data);
 
 $image = $file;
@@ -44,6 +47,7 @@ function super_impose($src, $dest, $sticker)
     return imagepng($image_1, $dest);
 }
 $new_image = super_impose($image, $file, $image_sticker);
+copy($file, $file_2);
 
 //Sending image path to database
 try
