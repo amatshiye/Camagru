@@ -14,7 +14,19 @@ html, body {
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: auto;
-  /*border:10px solid rgb(255, 255, 255);*/
+  /*border:10px solid rgb(0, 0, 0);*/
+}
+
+.container2 {
+  /*margin: 0px 700px;*/
+  margin: 0px 35%;
+  overflow: 3;
+  height: 750px;
+  width: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border:10px solid rgb(17, 16, 16);
 }
 
 .container img {
@@ -293,6 +305,8 @@ body {
   width: 100%;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
+  color: rgb(201, 199, 199);
+  background-color: rgb(189, 189, 189);
 }
 
 .form4 button {
@@ -305,6 +319,42 @@ body {
   color: #ffffff;
 }
 
+.form4 .page_number{
+  outline: none;
+  display: block;
+  font-style:  normal;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+  font-family: Courier New, Courier, monospace;
+  width: 100%;
+  border: 1px solid #ffffff;
+  margin: 0 0 5px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.form4 input{
+  outline: none;
+  display: block;
+  max-height: 50%;
+  font-style:  normal;
+  flex-wrap: wrap;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+  font-family: Courier New, Courier, monospace;
+  width: 90%;
+  border: 1px solid #ffffff;
+  margin: 0px 22px 5px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.form4 input:focus {
+  border: 1px solid #33b5e5;
+  color: #333333;
+}
 /*for the header*/
 body {margin:0;}
 

@@ -56,7 +56,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
     <a href="index.php">Home</a>
     <a href="gallery.php">Gallery</a>
     <a href="settings.php">Settings</a>
-    <a href="settings.php">Photos</a>
+    <a href="photos.php">Photos</a>
     <a href="index.php?user=log">Logout</a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
@@ -103,7 +103,8 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
                     $user = $_SESSION['username'];
                     $dir = "config/upload/".$user."/*.*";
-                    $files = glob($dir);
+                    $files_uo = glob($dir);
+                    $files = array_reverse($files_uo);
 
                     for ($i = 0; $i < count($files); $i++)
                     {

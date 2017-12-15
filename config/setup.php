@@ -76,13 +76,28 @@ try
             $stmt = $conn->prepare('CREATE TABLE comments (
                 id int(11) not null PRIMARY KEY AUTO_INCREMENT,
                 name varchar(255) not null,
-                email varchar(255) not null,
+                user_name varchar(255) not null,
+                user_image varchar(255) not null,
                 comment varchar(255) not null
                 );'
             );
             //executing the query
             $stmt->execute();
             echo "Table comments created! <br/>";
+            echo "Creating table : likes <br/>";
+
+            $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $stmt = $conn->prepare('CREATE TABLE likes (
+                id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+                name varchar(255) not null,
+                liker varchar(255) not null,
+                user_image varchar(255) not null
+                );'
+            );
+            $stmt->execute();
+            echo "Table likes created! <br/>";
             try
             {
                 $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);

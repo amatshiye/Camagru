@@ -64,7 +64,7 @@ if (isset($_FILES['image']))
             
                 $stmt = $conn->prepare("INSERT INTO pictures (name, user, type, ext)
                 VALUES(:name, :user, :type, :ext)");
-                $stmt->execute(array(':name' => $file_path, ':user' => $user, 'type' => "image", ':ext' => $file_ext));
+                $stmt->execute(array(':name' => "config/".$file_path, ':user' => $user, 'type' => "image", ':ext' => $file_ext));
             }
             catch(PDOException $e)
             {

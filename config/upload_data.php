@@ -57,7 +57,7 @@ try
 
     $stmt = $conn->prepare("INSERT INTO pictures (name, user, type, ext)
     VALUES(:name, :user, :type, :ext)");
-    $stmt->execute(array(':name' => $file, ':user' => $user, ':type' => "image", ':ext' => "png"));
+    $stmt->execute(array(':name' => "config/".$file, ':user' => $user, ':type' => "image", ':ext' => "png"));
 }
 catch(PDOException $e)
 {
