@@ -101,11 +101,28 @@ try
     $user = $row['user'];
 
     //count the number of likes here!!!!
+    try 
+    {
+      $conn2 = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+      $conn2->setAttribute(PDO::ATTR_ERRMODE, ERRMODE_EXCEPTION);
+
+      $stmt2 = $conn2->prepare("SELECT * FROM likes WHERE picname = :picname");
+      $stmt2->execute(array(':picname' => $pic));
+
+      $likes = $stmt2->fetchAll();
+      $likes = count($likes);
+    }
+    catch (PDOException $e)
+    {
+      header("Location: gallery.php?server_error");
+      exit();
+    }
+
     if (isset($_SESSION['username']))
     {
       echo "<form method='post' class='form4'>
       <img height='300' width='400' src='".$pic."'>
-      <button formaction='config/gallery.back.php?picname=".$pic."&liker=".$user."' type='submit' name='like' value='1'>Like()</button>
+      <button formaction='config/gallery.back.php?picname=".$pic."&liker=".$user."' type='submit' name='like' value='1'>Like(".$likes.")</button>
       <input type='text' name='comment'>
       <button formaction='config/gallery.back.php?picname=".$pic."&user=".$user."' type='submit' name='submit'>Comment</button>
       </form><br/>";
@@ -117,8 +134,6 @@ try
       </form><br/>";
     }
   }
-
-
 
   for ($page = 1; $page <= $number_of_pages; $page++)
   {
