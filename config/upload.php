@@ -54,17 +54,22 @@ if (isset($_FILES['image']))
         }
         else
         {
-            $file_tmp_2 = $file_tmp;
             move_uploaded_file($file_tmp, $file_path);
-            copy($file_path, $file_path_2);
+            
+            //renaming file
+            $new_name = $user.mktime().".".$file_ext;
+            $new_path = $dir_upload.$new_name;
+            $new_path2 = $userdir.$new_name;
+
+            rename($file_path, $new_path);
+            copy($new_path, $new_path2);
             try
             {
                 $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
                 $stmt = $conn->prepare("INSERT INTO pictures (name, user, type, ext)
                 VALUES(:name, :user, :type, :ext)");
-                $stmt->execute(array(':name' => "config/".$file_path, ':user' => $user, 'type' => "image", ':ext' => $file_ext));
+                $stmt->execute(array(':name' => "config/".$new_path, ':user' => $user, 'type' => "image", ':ext' => $file_ext));
             }
             catch(PDOException $e)
             {

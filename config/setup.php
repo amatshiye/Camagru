@@ -91,7 +91,7 @@ try
             
             $stmt = $conn->prepare('CREATE TABLE likes (
                 id int(11) not null PRIMARY KEY AUTO_INCREMENT,
-                name varchar(255) not null,
+                picname varchar(255) not null,
                 liker varchar(255) not null,
                 user_image varchar(255) not null
                 );'

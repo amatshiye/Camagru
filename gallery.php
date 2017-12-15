@@ -57,6 +57,11 @@ else if (isset($_GET['comment_sent']))
 {
   echo "<script>alert('Comment sent :)')</script>";
 }
+else if (isset($_GET['server_error']))
+{
+  $msg = $_GET['msg'];
+  echo "<script>alert('Server has gone away. :( ".$msg."')</script>";
+}
 
 try
 {
@@ -86,7 +91,7 @@ try
   $this_page_first_result = ($page - 1) * $results_per_page;
 
   //getting the limited data from the database
-  $stmt = $conn->prepare("SELECT * FROM pictures LIMIT ". $this_page_first_result. ',' .$results_per_page);
+  $stmt = $conn->prepare("SELECT * FROM pictures ORDER BY id DESC LIMIT ". $this_page_first_result. ',' .$results_per_page);
   $stmt->execute();
 
 
@@ -99,7 +104,7 @@ try
     if (isset($_SESSION['username']))
     {
       echo "<form method='post' class='form4'>
-      <img src='".$pic."'>
+      <img height='300' width='400' src='".$pic."'>
       <button formaction='config/gallery.back.php?picname=".$pic."&liker=".$user."' type='submit' name='like' value='1'>Like()</button>
       <input type='text' name='comment'>
       <button formaction='config/gallery.back.php?picname=".$pic."&user=".$user."' type='submit' name='submit'>Comment</button>
@@ -108,7 +113,7 @@ try
     else
     {
       echo "<form method='post' class='form4'>
-      <img src='".$pic."'>
+      <img height='300' width='400' src='".$pic."'>
       </form><br/>";
     }
   }

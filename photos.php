@@ -37,20 +37,28 @@
     <?php
     session_start();
 
-    $user = $_SESSION['username'];
-    $dir = "config/upload/".$user."/*.*";
-    $files_uo = glob($dir);
-    $files = array_reverse($files_uo);
+    if (isset($_SESSION['username']))
+    {
+        $user = $_SESSION['username'];
+        $dir = "config/upload/".$user."/*.*";
+        $files_uo = glob($dir);
+        $files = array_reverse($files_uo);
 
-    for ($i = 0; $i < count($files); $i++)
-    {   
-        $num = $files[$i];
-        $exploded = end(explode("/", $num));
-        $new_dir = "config/upload/".$exploded;
-        echo "<form class='form4' method='POST'>
-        <img id='display' src='".$num."' alt='image file' />
-        <button formaction='config/delete.php?picname=".$new_dir."&user_dir=".$num."&filename=".$exploded."' type='submit' name='delete'>Delete</button>
-        </form>";
+        for ($i = 0; $i < count($files); $i++)
+        {   
+            $num = $files[$i];
+            $exploded = end(explode("/", $num));
+            $new_dir = "config/upload/".$exploded;
+            echo "<form class='form4' method='POST'>
+            <img height='300' width='400' id='display' src='".$num."' alt='image file' />
+            <button formaction='config/delete.php?picname=".$new_dir."&user_dir=".$num."&filename=".$exploded."' type='submit' name='delete'>Delete</button>
+            </form>";
+        }
+    }
+    else
+    {
+        header("Location: login.php?user=log");
+        exit();
     }
     ?>
 </div>

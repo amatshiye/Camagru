@@ -11,7 +11,7 @@ if (isset($_SESSION['username']))
 
     //details belonging to the pictures user
     $user_image = $_GET['picname'];
-    $user_pic_name = $_GET['user'];
+    $user_pic_name = $_GET['liker'];
 
     if (isset($_POST['like']))
     {
@@ -19,11 +19,12 @@ if (isset($_SESSION['username']))
         {
             $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         
+            $stmt = $conn->prepare("INSERT INTO likes (picname, liker, user_image)
+            VALUES (:picname, :liker, :user_image)");
 
-            $stmt = $conn->prepare("INSERT INTO likes (name, liker, user_image)
-            VALUES(:name, :liker, :user_image)");
-            $stmt->execute(array(':name' => $user_image, ':liker' => $user, ':user_image' => $user_pic_name));
-            
+            //die("Got Here");
+            $stmt->execute(array(':picname' => $user_image, ':liker' => $user, ':user_image' => $user_pic_name));
             header("Location: ../gallery.php?liked");
             exit();
         }
@@ -61,6 +62,7 @@ if (isset($_SESSION['username']))
 
             $stmt = $conn->prepare("INSERT INTO comments (name, user_name, comment)
             VALUES (:name, :user_name, :comment)");
+
             $stmt->execute(array(':name' => $user_image, ':user_name' => $user, ':comment' => $comment));
 
             //Sending email to image user
