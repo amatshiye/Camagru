@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['username']))
+{
+  header("Location: index.php?user=log");
+  exit();
+}
 if (isset($_GET['updated']))
 {
     echo "<script>alert('User notifications updated')</script>";

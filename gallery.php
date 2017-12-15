@@ -62,6 +62,10 @@ else if (isset($_GET['server_error']))
   $msg = $_GET['msg'];
   echo "<script>alert('Server has gone away. :( ".$msg."')</script>";
 }
+else if (isset($_GET['not_allowed']))
+{
+  echo "<script>alert('You can only like a picture once!. :)')</script>";
+}
 
 try
 {
