@@ -13,8 +13,27 @@ if (isset($_SESSION['username']))
     $user_image = $_GET['picname'];
     $user_pic_name = $_GET['user'];
 
+    if (isset($_POST['like']))
+    {
+        try
+        {
+            $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (isset($_POST['comment']))
+            $stmt = $conn->prepare("INSERT INTO likes (name, liker, user_image)
+            VALUES(:name, :liker, :user_image)");
+            $stmt->execute(array(':name' => $user_image, ':liker' => $user, ':user_image' => $user_pic_name));
+            
+            header("Location: ../gallery.php?liked");
+            exit();
+        }
+        catch(PDOException $e)
+        {
+            header("Location: ../gallery.php?server_error");
+            exit();
+        }
+    }
+    else if (isset($_POST['comment']))
     {
         $comment = $_POST['comment'];
         if ($comment == "")
@@ -67,15 +86,6 @@ if (isset($_SESSION['username']))
             exit();
         }
 
-    }
-    else if (isset($_POST['like']) && $_POST['like'] == 1)
-    {
-
-
-
-
-        header("Location: ../gallery.php?liked");
-        exit();
     }
     else
     {

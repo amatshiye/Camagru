@@ -89,11 +89,13 @@ try
   $stmt = $conn->prepare("SELECT * FROM pictures LIMIT ". $this_page_first_result. ',' .$results_per_page);
   $stmt->execute();
 
+
   while ($row = array_reverse($stmt->fetch(PDO::FETCH_ASSOC)))
   {
     $pic = $row['name'];
     $user = $row['user'];
 
+    //count the number of likes here!!!!
     if (isset($_SESSION['username']))
     {
       echo "<form method='post' class='form4'>
