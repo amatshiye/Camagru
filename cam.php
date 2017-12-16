@@ -233,6 +233,7 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
 
             //displaying the image on the canvas
             var canvas = document.getElementById('canvas')
+
             if (canvas != null)
             {
                 var context = canvas.getContext('2d');
@@ -242,11 +243,16 @@ else if ($_SESSION['username'] == "" || $_SESSION['email'] == "")
                 {
                     display_image = new Image();
                     display_image.src = file_path;
-                    console.log("Image found");
-                    display_image.onload = function(){
-                        context.drawImage(display_image, 0, 0, 400, 300);
-                        console.log("Displaying image");
+                    console.log("Url found");
+
+                    if (file_path.search("upload"))
+                    {
+                        window.location.href = "cam.php";
                     }
+                        display_image.onload = function(){
+                            context.drawImage(display_image, 0, 0, 400, 300);
+                            console.log("Displaying image");
+                        }
                 }
             }
             else

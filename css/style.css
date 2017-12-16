@@ -351,9 +351,8 @@ body {
   box-sizing: border-box;
 }
 
-.form4 input:focus {
-  border: 1px solid #33b5e5;
-  color: #333333;
+.form4 p{
+  color: rgb(255, 255, 255);
 }
 /*for the header*/
 body {margin:0;}

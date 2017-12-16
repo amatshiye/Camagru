@@ -29,6 +29,14 @@ else if (isset($_GET['user_not_found']))
 {
     echo "<script>alert('Incorrect Username/Password')</script>";
 }
+else if (isset($_GET['username']))
+{
+    echo "<script>alert('That username is not available. :(')</script>";
+}
+else if (isset($_GET['email']))
+{
+    echo "<script>alert('That email is not available')</script>";
+}
 ?>
 
 <!DOCTYPE html>

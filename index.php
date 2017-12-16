@@ -74,7 +74,7 @@ else if (isset($_SESSION['email']) && $_SESSION['email'] != "")
       foreach($result as $row)
       if ($row['email'] == $user)
       {
-        header("Location: cam.php?user=back");
+        header("Location: cam.php");
         exit();
       }
       else

@@ -124,11 +124,13 @@ try
 
     if (isset($_SESSION['username']))
     {
+      $user1 = $_SESSION['username'];
       echo "<form method='post' class='form4'>
+      <p>By ".$user."</p>
       <img height='300' width='400' src='".$pic."'>
-      <button formaction='config/gallery.back.php?picname=".$pic."&liker=".$user."' type='submit' name='like' value='1'>Like(".$likes.")</button>
+      <button formaction='config/gallery.back.php?picname=".$pic."&liker=".$user1."' type='submit' name='like' value='1'>Like(".$likes.")</button>
       <input type='text' name='comment'>
-      <button formaction='config/gallery.back.php?picname=".$pic."&user=".$user."' type='submit' name='submit'>Comment</button>
+      <button formaction='config/gallery.back.php?picname=".$pic."&user=".$user1."' type='submit' name='submit'>Comment</button>
       </form><br/>";
     }
     else

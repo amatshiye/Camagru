@@ -1,3 +1,9 @@
+<html>
+	<head>
+		<meta http-equiv="refresh" content="3" >
+	</head>
+</html>
+
 <?php 
 
 session_start();
@@ -67,6 +73,36 @@ if (isset($_POST['submit']) && isset($_POST['passwd']))
         }
         else
         {
+            try
+            {
+                //checking if the username or email is not taken
+                $conn4 = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+                $conn4->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $stmt4 = $conn4->prepare("SELECT * FROM users");
+                $stmt4->execute();
+
+                $results = $stmt4->fetchAll();
+
+                foreach ($results as $row4)
+                {
+                    if ($row4['user_name'] == $username)
+                    {
+                        header("Location: ../settings.php?username");
+                        exit();
+                    }
+                    else if ($row['email'] == $email)
+                    {
+                        header("Location: ../settings.php?email");
+                        exit();
+                    }
+                }
+            }
+            catch(PDOException $e)
+            {
+                header("Location: ../settings.php?server_error");
+                exit();
+            }
             //Connecting to database to check the user
             try
             {
@@ -159,7 +195,6 @@ if (isset($_POST['submit']) && isset($_POST['passwd']))
 }
 else
 {
-    echo "<script>alert('Boooom yoooow')</script>";
     header("Location: ../settings.php?pass");
     exit();
 }
