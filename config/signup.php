@@ -106,8 +106,8 @@ if (isset($_POST['submit']))
                     //sending the mail
                     $to = $email;
                     $subject = "Verification code from PixelX";
-                    $msg = "Welcome to PixelX your account needs to be activated\nTo activate your account click on the link below\n\nhttp://localhost:8080/camagru/home.php?verify=1&code=".$con_code."&email=".$email."&com=".$url_salt;
-                    $headers = 'From: noreply@pixelx.com';
+                    $msg = "Welcome to StaGazers your account needs to be activated\nTo activate your account click on the link below\n\nhttp://localhost:8080/camagru/home.php?verify=1&code=".$con_code."&email=".$email."&com=".$url_salt;
+                    $headers = 'From: noreply@stargazers.com';
                     mail($to, $subject, $msg, $headers);
                     header("Location: ../index.php?verify=0");
                     exit();

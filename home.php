@@ -80,7 +80,7 @@ catch(PDOException $e)
 
 <body>
     <div class="pen-title">
-        <h1>PixelX</h1>
+        <h1>St⭐rGazers</h1>
     </div>
     
     <div class="module form-module">
@@ -94,7 +94,7 @@ catch(PDOException $e)
         </div>
     </div> 
     <div class="footer">
-          <p>© 2017 PixelX</p>
+          <p>© 2017 gsebaets</p>
 </div> 
 </body>
 </html>

@@ -53,7 +53,7 @@ else if (isset($_GET['error']))
           }
 </script>
 <div class="pen-title">
-    <h1>PixelX</h1><span> <i class='fa fa-code'></i> </span>
+    <h1>St⭐rGazer</h1><span> <i class='fa fa-code'></i> </span>
 </div>
 
 <div class="module form-module">
@@ -73,7 +73,7 @@ else if (isset($_GET['error']))
 </div>
 
 <div class="footer">
-          <p>© 2017 PixelX</p>
+          <p>© 2017 gsebaets</p>
 </div>
 </body>
 </html>

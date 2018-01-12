@@ -132,7 +132,7 @@ else if (isset($_SESSION['email']) && $_SESSION['email'] != "")
           }
 </script>
 <div class="pen-title">
-    <h1>PixelX</h1><span> <i class='fa fa-code'></i> </span>
+    <h1>St⭐rGazer</h1><span> <i class='fa fa-code'></i> </span>
 </div>
 
 <div class="module form-module">
@@ -141,9 +141,9 @@ else if (isset($_SESSION['email']) && $_SESSION['email'] != "")
   <div class="form">
     <h2>Create an account</h2>
     <form action="config/signup.php" method="POST">
-      <input type="text" name="user_name" placeholder="Username"/>
-      <input type="password" name="passwd" placeholder="Password"/>
-      <input type="email" name="email" placeholder="Email Address"/>
+      <input type="text" name="user_name" placeholder="USERNAME"/>
+      <input type="password" name="passwd" placeholder="PASSWORD"/>
+      <input type="email" name="email" placeholder="EMAIL ADDRESS"/>
       <button type="submit" name="submit">Register</button><br/>
       <button formaction="login.php">Login</button>
     </form>
@@ -151,7 +151,7 @@ else if (isset($_SESSION['email']) && $_SESSION['email'] != "")
 </div>
 
 <div class="footer">
-          <p>© 2017 PixelX</p>
+          <p>© 2017 gsebaets</p>
 </div>
 </body>
 </html>
